@@ -8,6 +8,11 @@ Rails.application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
 
+  # letter_opener_jutsu/config/environments/development.rb
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.perform_deliveries = true
+
+
   # Do not eager load code on boot.
   config.eager_load = false
 
@@ -29,6 +34,12 @@ Rails.application.configure do
 
     config.cache_store = :null_store
   end
+
+  
+  config.action_mailer.raise_delivery_errors = false
+  host = 'localhost:3000' # Don't use this literally; use your local dev host instead
+  # Use this if developing on localhost.
+  config.action_mailer.default_url_options = { host: host, protocol: 'http' }
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local

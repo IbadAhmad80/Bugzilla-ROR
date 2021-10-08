@@ -12,6 +12,7 @@ gem 'bcrypt', '3.1.13'
 
 gem 'rails-controller-testing'
 gem 'sqlite3', '~> 1.4'
+gem  'letter_opener'
 # Use Puma as the app server
 gem 'puma', '~> 5.0'
 # Use SCSS for stylesheets
