@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :account_activations, only: [:edit]
   resources :bugs, only: [ :index,:new, :create, :show, :edit, :update]
+  resources :comments, only: [:new,:create]
 end

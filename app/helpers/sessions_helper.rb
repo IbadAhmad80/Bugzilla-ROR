@@ -3,7 +3,6 @@ module SessionsHelper
     # Logs in the given user.
     def log_in(user)
         session[:user_id] = user.id
-        session[:role]=user.role
     end  
 
     # Remembers a user in a persistent session.
@@ -43,7 +42,6 @@ module SessionsHelper
     def log_out
         forget(current_user)
         session.delete(:user_id)
-        session.delete(:user_role)
         @current_user = nil
     end
 
@@ -51,7 +49,6 @@ module SessionsHelper
     def forget(user)
         user.forget
         cookies.delete(:user_id)
-        cookies.delete(:user_role)
         cookies.delete(:remember_token)
     end
     

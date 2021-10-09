@@ -7,7 +7,7 @@
     <%= f.label :email %>
     <%= f.email_field :email, class: 'form-control' %>
     <%= f.label :role %>
-    <%= f.select :role, options_for_select(['Manager', 'QA','Developer'],'Manager'),class: 'form-control' %>
+    <%= f.select :role, ['Manager', 'QA','Developer'],class: 'form-control' %>
     <%= f.label :password %>
     <%= f.password_field :password ,class: 'form-control' %>
 

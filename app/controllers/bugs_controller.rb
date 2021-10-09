@@ -1,6 +1,7 @@
 class BugsController < ApplicationController
   before_action :logged_in_user, only: [:new,:show,:index,:edit]
   before_action :get_all_users, only: [:new,:create,:edit,:update]
+  before_action :administrative_access, only: [:show]
 
 
   def new
@@ -18,14 +19,7 @@ class BugsController < ApplicationController
   end
 
   def show
-    if current_user.role=='Manager'
-      @bug=Bug.find(params[:id])
-    elsif (current_user.role=='QA') && (Bug.find(params[:id])[:user_id]==current_user.id)
-      @bug=Bug.find(params[:id])
-    else
-      flash.now[:success] = "You dosnt have administrative rights"
-      redirect_to current_user
-    end
+    administrative_access
   end
 
   def index
@@ -33,18 +27,13 @@ class BugsController < ApplicationController
       @bugs=Bug.all
     elsif current_user.role=='QA'
       @bugs=Bug.where(user_id:current_user.id)
-    end
+    else
+      @bugs=Bug.where(developer_id:current_user.id)
+    end 
   end
 
   def edit
-    if current_user.role=='Manager'
-      @bug=Bug.find(params[:id])
-    elsif (current_user.role=='QA') && ((Bug.find(params[:id])[:user_id])==current_user.id)
-      @bug=Bug.find(params[:id])
-    else
-      flash.now[:success] = "You dosnt have administrative rights"
-      redirect_to current_user
-    end
+    administrative_access
   end
 
   def update
@@ -65,6 +54,21 @@ class BugsController < ApplicationController
   def get_all_users
       @developer=get_all_developers
       @QA=get_all_QA
+  end
+
+  def administrative_access
+    if current_user.role=='Manager'
+      @bug=Bug.find(params[:id])
+    elsif (current_user.role=='QA') && ((Bug.find(params[:id])[:user_id])==current_user.id)
+      @bug=Bug.find(params[:id])
+    elsif (current_user.role=='Developer') && ((Bug.find(params[:id])[:developer_id])==current_user.id)
+      @bug=Bug.find(params[:id])
+    else
+      flash.now[:success] = "You dosnt have administrative rights"
+      redirect_to current_user
+    end
+
+    
   end
 
 

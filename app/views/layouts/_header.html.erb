@@ -1,6 +1,6 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
     <div class="container">
-        <%= link_to "sample app", root_path, id: "logo" %>
+        <%= link_to "BugZilla", root_path, id: "logo" %>
         <nav>
 
             <div class="navbar-header">
@@ -12,10 +12,10 @@
                 </button>
             </div>
             <ul class="nav navbar-nav navbar-right collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <% if (logged_in?) && (@current_user.activated?) %>
+                <% if (logged_in?) && (@current_user.activated?) %>  
+                    <li><%= link_to "Show Bugs", bugs_path %></li>
                     <% if (@current_user.role=='Manager') || (@current_user.role=='QA') %>
-                          <li><%= link_to "Create Bug", new_bug_path %></li>
-                          <li><%= link_to "Show Bugs", bugs_path %></li>
+                        <li><%= link_to "Create Bug", new_bug_path %></li>     
                     <% end %>
                      <% if (@current_user.role=='Manager') %>
                           <li><%= link_to "All Roles", users_path %></li>

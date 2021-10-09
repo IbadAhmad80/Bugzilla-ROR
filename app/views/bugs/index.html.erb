@@ -1,13 +1,15 @@
+<% provide(:title, 'All Bugs') %>
 <table class="table">
   <thead>
     <tr>
-        <th scope="col">Title</th>
-        <th scope="col">Description</th>
-        <th scope="col">Priority</th>
-        <th scope="col">Status</th>
-        <th scope="col">Estimated_time</th>
-        <th scope="col">Created By</th>
-        <th scope="col">Assigned To</th>
+      <th scope="col">Title</th>
+      <th scope="col">Description</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Status</th>
+      <th scope="col">Est.time</th>
+      <th scope="col">Creator</th>
+      <th scope="col">QA</th>
+      <th scope="col">Developer</th>
     </tr>
   </thead>
 
@@ -15,14 +17,20 @@
   <tbody>
    <% @bugs.each do |bug| %>
         <tr>
-            <td><%= bug.title %></th>
-            <td ><%= bug.description %></td>
-            <td><%= bug.priority %></td>
-            <td><%= bug.status %></td>
-            <td><%= bug.estimated_time %> Days</td>
-            <td><%= (User.find(bug.user_id))[:name] %></td>
-            <td><%= (User.find(bug.qa_id))[:name]%></td>
+          <td><%= link_to bug.title, bug %></th>
+          <td ><%= bug.description %></td>
+          <td><%= bug.priority %></td>
+          <td><%= bug.status %></td>
+          <td><%= bug.estimated_time %> Days</td>
+          <td><%= link_to (User.find(bug.user_id))[:name], User.find(bug.user_id) %></td>
+          <td><%=link_to (User.find(bug.qa_id))[:name], User.find(bug.qa_id) %></td>
+          <td><%=link_to (User.find(bug.developer_id))[:name], User.find(bug.developer_id) %></td>
+          <% if (@current_user.role=='Manager') || (@current_user.role=='QA') %>
             <td><%= link_to "Edit", edit_bug_path(bug) %></td>
+          <% else %>
+            <td><%= link_to "Update Status", edit_bug_path(bug) %></td>
+             <td><%= link_to "Add Comment", new_comment_path(:bug_id => bug.id) %></td>
+          <%end%>
         </tr>
     <% end %>
     
