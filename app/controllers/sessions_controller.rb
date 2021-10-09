@@ -1,10 +1,11 @@
 class SessionsController < ApplicationController
 
   def new
-    user = User.find_by(id: session[:user_id])
-    if (logged_in?) && (user.activated?)
-      @present_user=current_user
-      redirect_to user_path(@present_user)
+    @user=User.new
+    if logged_in?
+      redirect_to @current_user
+    else
+      render 'new'
     end
   end
 

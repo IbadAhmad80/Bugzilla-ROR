@@ -1,0 +1,20 @@
+
+
+<%= form_with(model: @bug, local: true) do |f| %>
+        <%= render 'shared/error_messages' , object: f.object %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control' %>
+        <%= f.label :description %>
+        <%= f.text_field :description, class: 'form-control' %>
+        <%= f.label :priority %>
+        <%= f.select :priority, ['High', 'Medium','Low'],class: 'form-control' %>
+        <%= f.label :estimated_time %>
+        <%= f.select :estimated_time, ['90 Days','60 Days','30 Days'],class: 'form-control' %>
+        <%= f.label :status %>
+        <%= f.select :status, options_for_select(['Assigned','In Progress','Completed'],'Assigned'),class: 'form-control' %>
+        <%= f.label :developer_id %>
+        <%= f.select :developer_id, @developer.map { |t1| [t1.name, t1.id]}, {}, class: "form-control" %>
+        <%= f.label :qa_id %>
+        <%= f.select :qa_id, @QA.map { |t| [t.name, t.id]}, {}, class: "form-control" %>
+        <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+<% end %>

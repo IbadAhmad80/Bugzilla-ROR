@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :logged_in_user, only: [:new,:show,:index,:edit]
 
   def new
     @user=User.new
@@ -12,6 +13,7 @@ class UsersController < ApplicationController
       log_in @user
       flash[:info] = "Please check your email to activate your account."
       redirect_to root_url
+      @selected_role='Developer'
     else
       render 'new'
     end
@@ -19,7 +21,27 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
+    
   end
+
+  def index
+   
+    @users=User.where(role:'QA').or(User.where(role:'Developer'))
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to @user
+    else
+      render 'edit'
+    end
+  end
+
 
   # Returns the hash digest of the given string.
   def digest(string)
@@ -32,7 +54,6 @@ class UsersController < ApplicationController
   def new_token
     SecureRandom.urlsafe_base64
   end
-
 
   private
     def user_params

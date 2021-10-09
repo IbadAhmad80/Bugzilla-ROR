@@ -335,7 +335,7 @@ span.image {
   padding: 0;
 }
 
-select#user_role {
-  height: 50px;
+select {
+  height: 50px !important;
   padding: 0 5px;
 }

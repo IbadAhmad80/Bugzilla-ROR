@@ -10,7 +10,6 @@ Rails.application.configure do
 
   # letter_opener_jutsu/config/environments/development.rb
   config.action_mailer.delivery_method = :letter_opener
-  config.action_mailer.perform_deliveries = true
 
 
   # Do not eager load code on boot.

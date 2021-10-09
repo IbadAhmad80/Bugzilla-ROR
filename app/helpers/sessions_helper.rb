@@ -3,9 +3,8 @@ module SessionsHelper
     # Logs in the given user.
     def log_in(user)
         session[:user_id] = user.id
-    end
-
-   
+        session[:role]=user.role
+    end  
 
     # Remembers a user in a persistent session.
     def remember(user)
@@ -23,8 +22,8 @@ module SessionsHelper
             if user && user.authenticated?(:remember, cookies[:remember_token])
             log_in user
             @current_user = user
+            end
         end
-    end
     end
 
     # Returns true if the user is logged in, false otherwise.
@@ -33,9 +32,18 @@ module SessionsHelper
     end
 
 
+    def logged_in_user
+        unless logged_in?
+        flash[:danger] = "Please log in."
+        redirect_to root_path
+        end
+    end
+
+
     def log_out
         forget(current_user)
         session.delete(:user_id)
+        session.delete(:user_role)
         @current_user = nil
     end
 
@@ -43,6 +51,7 @@ module SessionsHelper
     def forget(user)
         user.forget
         cookies.delete(:user_id)
+        cookies.delete(:user_role)
         cookies.delete(:remember_token)
     end
     

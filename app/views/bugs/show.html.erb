@@ -1,0 +1,25 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col" class='w-30' style="width: 30%">Description</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Status</th>
+      <th scope="col">Estimated_time</th>
+      <th scope="col">Created By</th>
+      <th scope="col">Assigned To</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @bug.title %></th>
+      <td ><%= @bug.description %></td>
+      <td><%= @bug.priority %></td>
+      <td><%= @bug.status %></td>
+      <td><%= @bug.estimated_time %> Days</td>
+      <td><%= (User.find(@bug.user_id))[:name] %></td>
+      <td><%= (User.find(@bug.qa_id))[:name]%></td>
+      <%# <td><button class='btn btn-secondary'>Update</button></td> %>
+    </tr>
+  </tbody>
+</table>
