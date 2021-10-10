@@ -25,7 +25,7 @@
       </tr>
     </tbody>
   </table>
-  <% if @bug.comments.any? %>
+  <% if @bug.comments.any? && (@current_user.role!='Manager') %>
     <% @bug.comments.each do |comment| %>
           <h4>title : <%= comment.title  %></h4>
           <h4>content : <%=  comment.content  %></h4>

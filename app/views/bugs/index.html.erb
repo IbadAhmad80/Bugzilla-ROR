@@ -25,10 +25,12 @@
           <td><%= link_to (User.find(bug.user_id))[:name], User.find(bug.user_id) %></td>
           <td><%=link_to (User.find(bug.qa_id))[:name], User.find(bug.qa_id) %></td>
           <td><%=link_to (User.find(bug.developer_id))[:name], User.find(bug.developer_id) %></td>
-          <% if (@current_user.role=='Manager') || (@current_user.role=='QA') %>
+          <% if (current_user.role=='Manager') %>
             <td><%= link_to "Edit", edit_bug_path(bug) %></td>
           <% else %>
             <td><%= link_to "Update Status", edit_bug_path(bug) %></td>
+          <% end %>
+          <% if (current_user.role=='Developer') %>
              <td><%= link_to "Add Comment", new_comment_path(:bug_id => bug.id) %></td>
           <%end%>
         </tr>

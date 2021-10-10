@@ -4,6 +4,24 @@
 <h1>Edit a Bug</h1>
 <div class="row">
     <div class="col-md-6 col-md-offset-3">
-       <%= render 'form' %>
+       
+<%= form_with(model: @bug, local: true) do |f| %>
+    <%= render 'shared/error_messages' , object: f.object %>
+    <% if (@current_user.role=='Manager') %>
+        <%= f.label :developer_id %>
+        <%= f.select :developer_id, @developer.map { |t1| [t1.name, t1.id]}, {}, class: "form-control" %>
+        <%= f.label :qa_id %>
+        <%= f.select :qa_id, @QA.map { |t| [t.name, t.id]}, {}, class: "form-control" %>  
+     <% end %>
+        <% if (@current_user.role=='Manager') || (@current_user.role=='QA') %>  
+            <%= f.label :status %>
+            <%= f.select :status, ['Assigned','Started','In Progress','Completed'],class: 'form-control' %>
+    <% else %>
+            <%= f.label :status %>
+            <%= f.select :status, ['Started','Completed'],class: 'form-control' %>
+    <% end %>
+    <%= f.submit yield(:button_text), class: "btn btn-primary" %>
+        
+<% end %>
     </div>
 </div>

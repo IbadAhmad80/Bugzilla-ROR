@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
+  before_action :developer_check
 
     def new  
       @comment=Comment.new
-      # @bug=Bug.find(params[:bug_id])
-      # debugger
+      session[:bug_id]=params[:bug_id]
     end
 
     def create
-     bug=Bug.find('2')
+     bug=Bug.find(session[:bug_id])
      @comment = bug.comments.build(comment_params)
       if @comment.save
         flash[:success] = "Comment Created."
@@ -21,6 +21,12 @@ class CommentsController < ApplicationController
 
     def comment_params
       params.require(:comment).permit(:title, :content)
+    end
+
+    def developer_check
+      if current_user.role!='Developer'
+        redirect_to bugs_path
+      end
     end
     
 end
