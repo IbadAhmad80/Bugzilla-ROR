@@ -8,8 +8,9 @@ class BugsController < ApplicationController
     if current_user.role!='Developer'
       @bug=Bug.new
     else
-      flash[:danger] = "You dosnt have administrative rights to see all bugs"
+      flash[:danger] = "Only Manager and QA have rights to create the bug"
       redirect_to current_user
+    end
   end
 
   def create
@@ -68,7 +69,7 @@ class BugsController < ApplicationController
     elsif (current_user.role=='Developer') && ((Bug.find(params[:id])[:developer_id])==current_user.id)
       @bug=Bug.find(params[:id])
     else
-      flash[:danger] = "You dosnt have administrative rights to see all bugs"
+      flash[:danger] = "Only Manager has rights to see all bugs"
       redirect_to current_user
     end
 

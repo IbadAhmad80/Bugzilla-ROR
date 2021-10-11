@@ -12,7 +12,6 @@ section {
 textarea {
   resize: vertical;
 }
-
 .center {
   text-align: center;
 }
@@ -219,6 +218,10 @@ select {
     max-width: 340px;
   }
 
+  .single-big-show-wrapper {
+    min-width: 700px;
+  }
+
   h2,
   h6 {
     border-bottom: 1px solid gray;
@@ -235,6 +238,7 @@ select {
   h5 {
     font-size: 16inpx;
     margin: 0;
+
     color: black;
     margin: 10px 0 0px 0;
   }
@@ -252,9 +256,15 @@ select {
   .button {
     display: block;
     color: white;
-    padding: 10px 15px;
+    padding: 8px;
     background-color: black;
     margin: 1rem auto;
     width: 150px;
+  }
+
+  .comment-container {
+    margin-bottom: 20px;
+    text-align: left;
+    padding-inline: 20px;
   }
 }

@@ -1,7 +1,7 @@
 <% provide(:title, @bug.title) %>
 <div>
   <div class='bugs-container'>
-    <div class='single-bug-wrapper'>
+    <div class='single-bug-wrapper single-big-show-wrapper'>
         <h2 class='bug-title'><%= @bug.title%></h2>
         <h6 class='bug-description'><%=  @bug.description %></h6>
         <h6 class='bug-creator'>Created By : <%=  link_to (User.find(@bug.user_id))[:name] , User.find(@bug.user_id) %>  (<%= User.find(@bug.user_id)[:role]%>)</h6>
@@ -10,12 +10,15 @@
         <h6 class='bug-estimated-time'>Estimated Time : <%= @bug.estimated_time %> Days</h6>
         <h6 class='bug-priority'>Priority : <%= @bug.priority %></h6>
         <h6 class='bug-status'>Status : <%= @bug.status %></h6>
-        <% if @bug.comments.any? && (@current_user.role!='Manager') %>
+        <div class='comment-container'>
+          <% if @bug.comments.any? && (@current_user.role!='Manager') %>
           <% @bug.comments.each do |comment| %>
-          <h5>title : <%= comment.title  %></h5>
-          <h6>content : <%=  comment.content  %></h6>
+          <h5><strong>title : <%= comment.title  %></strong></h5>
+          <h5>content : <%=  comment.content  %></h5>
           <%end%>
         <% end %>
+        </div>
+        
     </div>
 </div>
   
