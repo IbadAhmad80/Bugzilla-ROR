@@ -23,6 +23,7 @@ class UsersController < ApplicationController
       if current_user.id==params[:id].to_i || current_user.role=='Manager'
         @user = User.find(params[:id])
       else
+        flash[:danger]='Only manager can see other profiles'
         redirect_to bugs_path
       end
   end

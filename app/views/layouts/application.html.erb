@@ -1,42 +1,37 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title><%= full_title(yield(:title)) %></title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-
-    scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag 'application', media: 'all',
-    'data-turbolinks-
-    track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-
-    track': 'reload' %>
-    <!--[if lt IE 9]>
-    <script 
-    src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.j
-    s"></script>
-    <![endif]-->
+        <title><%= full_title(yield(:title)) %></title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-
+        scale=1">
+        <%= csrf_meta_tags %>
+        <%= csp_meta_tag %>
+        <%= stylesheet_link_tag 'application', media: 'all',
+        'data-turbolinks-
+        track': 'reload' %>
+        <%= javascript_pack_tag 'application', 'data-turbolinks-
+        track': 'reload' %>
+        <!--[if lt IE 9]>
+        <script 
+        src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/r29/html5.min.j
+        s"></script>
+        <![endif]-->
     </head>
     <body>
         <%= render 'layouts/shim' %>
         <div class="container">
+            <%= render 'layouts/header' %>
+                <% flash.each do |message_type, message| %>
+                <div class="alert alert-<%= message_type %>"><%=message %></div>
+            <% end %>
 
+            <div class="center jumbotron">
+                <%= yield %>
 
-
-        <%= render 'layouts/header' %>
-        <% flash.each do |message_type, message| %>
-        <div class="alert alert-<%= message_type %>"><%=message %></div>
-        <% end %>
-
-        <div class="center jumbotron">
-        <%= yield %>
-
-        </div>
-        <div class="container">
-        </div>
-
-        
+            </div>
+                <div class="container">
+            </div>
         </div>
 
     </body>

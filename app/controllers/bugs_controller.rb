@@ -5,7 +5,11 @@ class BugsController < ApplicationController
 
 
   def new
-    @bug=Bug.new
+    if current_user.role!='Developer'
+      @bug=Bug.new
+    else
+      flash[:danger] = "You dosnt have administrative rights to see all bugs"
+      redirect_to current_user
   end
 
   def create
@@ -64,7 +68,7 @@ class BugsController < ApplicationController
     elsif (current_user.role=='Developer') && ((Bug.find(params[:id])[:developer_id])==current_user.id)
       @bug=Bug.find(params[:id])
     else
-      flash.now[:success] = "You dosnt have administrative rights"
+      flash[:danger] = "You dosnt have administrative rights to see all bugs"
       redirect_to current_user
     end
 
