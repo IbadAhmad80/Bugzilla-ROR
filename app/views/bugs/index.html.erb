@@ -5,7 +5,7 @@
         <h2 class='bug-title'><%= link_to bug.title, bug %></h2>
         <h6 class='bug-description'><%=  bug.description %></h6>
         <h6 class='bug-creator'><strong>Created By : </strong><%=  link_to (User.find(bug.user_id))[:name], User.find(bug.user_id) %> (<%= User.find(bug.user_id)[:role]%>)</h6>
-        <h6 class='bug-assigned'><strong>Assigned To (QA) :</strong><%=  link_to (User.find(bug.developer_id))[:name], User.find(bug.user_id) %></h6>
+        <h6 class='bug-assigned'><strong>Assigned To (QA) : </strong><%=  link_to (User.find(bug.developer_id))[:name], User.find(bug.user_id) %></h6>
         <h6 class='bug-status'><strong>Status : </strong><%= bug.status %></h6>
         <% if (current_user.role=='Manager') %>
             <div><%= link_to "Edit", edit_bug_path(bug), class:'button'%></div>

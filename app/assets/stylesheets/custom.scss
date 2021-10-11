@@ -251,6 +251,9 @@ select {
     color: rgb(102, 94, 94);
     font-size: 15px;
     padding: 2rem 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .button {

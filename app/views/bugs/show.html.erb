@@ -5,7 +5,7 @@
         <h2 class='bug-title'><%= @bug.title%></h2>
         <h6 class='bug-description'><%=  @bug.description %></h6>
         <h6 class='bug-creator'><strong>Created By : </strong><%=  link_to (User.find(@bug.user_id))[:name] , User.find(@bug.user_id) %>  (<%= User.find(@bug.user_id)[:role]%>)</h6>
-        <h6 class='bug-assigned'><strong>Assigned To (QA) :</strong> <%=  link_to (User.find(@bug.qa_id))[:name], User.find(@bug.user_id) %></h6>
+        <h6 class='bug-assigned'><strong>Assigned To (QA) : </strong> <%=  link_to (User.find(@bug.qa_id))[:name], User.find(@bug.user_id) %></h6>
         <h6 class='bug-assigned'><strong>Assigned To (Developer) : </strong><%=  link_to (User.find(@bug.developer_id))[:name], User.find(@bug.user_id) %></h6>
         <h6 class='bug-estimated-time'><strong>Estimated Time : </strong><%= @bug.estimated_time %> Days</h6>
         <h6 class='bug-priority'><strong>Priority : </strong><%= @bug.priority %></h6>
