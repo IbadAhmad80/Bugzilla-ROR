@@ -22,40 +22,6 @@ textarea {
   font-size: 50px;
 }
 
-aside {
-  section.user_info {
-    margin-top: 20px;
-  }
-  section {
-    padding: 10px 0;
-    margin-top: 20px;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    span {
-      display: block;
-      margin-bottom: 3px;
-      line-height: 1;
-    }
-    h1 {
-      font-size: 1.4em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      margin-top: 0px;
-    }
-  }
-}
-
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-.gravatar_edit {
-  margin-top: 15px;
-}
-
 /* typography */
 h1,
 h2,
@@ -80,6 +46,7 @@ h2 {
   font-weight: normal;
   color: #777;
 }
+
 p {
   font-size: 1.1em;
   line-height: 1.7em;
@@ -99,59 +66,10 @@ p {
   text-decoration: none;
 }
 
-/* footer */
-footer {
-  margin-top: 45px;
-  padding-top: 5px;
-  border-top: 1px solid #eaeaea;
-  color: #777;
-  a {
-    color: #555;
-    &:hover {
-      color: #222;
-    }
-  }
-  small {
-    float: left;
-  }
-  ul {
-    float: right;
-    list-style: none;
-    li {
-      float: left;
-      margin-left: 15px;
-    }
-  }
-}
-
 @mixin box_sizing {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
-
-//     /* miscellaneous */
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
-}
-.btn-lg,
-.btn-group-lg > .btn {
-  padding: 10px 16px;
-  font-size: 18px;
-  line-height: 1.3333333;
-  border-radius: 6px;
-  background: blue;
-  color: white;
-  margin: 15px 0 0 0;
-
-  &:hover {
-    background: teal;
-    color: white !important;
-  }
 }
 
 input,
@@ -193,24 +111,6 @@ input {
   margin-top: 10px;
 }
 
-@media (max-width: 800px) {
-  footer {
-    small {
-      display: block;
-      float: none;
-      margin-bottom: 1em;
-    }
-    ul {
-      float: none;
-      padding: 0;
-      li {
-        float: none;
-        margin-left: 0;
-      }
-    }
-  }
-}
-
 .checkbox {
   display: inline-block;
   margin-top: 0px;
@@ -222,6 +122,7 @@ input {
     font-weight: normal;
   }
 }
+
 #session_remember_me {
   width: auto;
   margin-left: 0;
@@ -249,95 +150,104 @@ label {
   }
 }
 
-.microposts {
-  list-style: none;
-  padding: 0;
-  li {
-    padding: 10px 0;
-    border-top: 1px solid #e8e8e8;
-  }
-  .user {
-    margin-top: 5em;
-    padding-top: 0;
-  }
-  .content {
-    display: block;
-    margin-left: 60px;
-    img {
-      display: block;
-      padding: 5px 0;
-    }
-  }
-  .timestamp {
-    color: $gray-light;
-    display: block;
-    margin-left: 60px;
-  }
-  .gravatar {
-    float: left;
-    margin-right: 10px;
-    margin-top: 5px;
-  }
-}
-aside {
-  textarea {
-    height: 100px;
-    margin-bottom: 5px;
-  }
-}
-span.image {
-  margin-top: 10px;
-  input {
-    border: 0;
-  }
-}
-
-.gravatar {
-  float: left;
-  margin-right: 10px;
-}
-.gravatar_edit {
-  margin-top: 15px;
-}
-.stats {
-  overflow: auto;
-  margin-top: 0;
-  padding: 0;
-  a {
-    float: left;
-    padding: 0 10px;
-    border-left: 1px solid $gray-lighter;
-    color: gray;
-    &:first-child {
-      padding-left: 0;
-      border: 0;
-    }
-    &:hover {
-      text-decoration: none;
-      color: blue;
-    }
-  }
-  strong {
-    display: block;
-  }
-}
-.user_avatars {
-  overflow: auto;
-  margin-top: 10px;
-  .gravatar {
-    margin: 1px 1px;
-  }
-  a {
-    padding: 0;
-  }
-}
-.users.follow {
-  padding: 0;
-}
-
 select {
   height: 50px !important;
   padding: 0 5px;
   background-color: white;
   outline: none;
+}
+
+.profile-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  .single-profile-item {
+    display: flex;
+    flex-direction: row;
+    margin: 3rem 3rem;
+  }
+  .profile-picture {
+    text-align: center;
+    padding: 12px 10px;
+    margin: 0 20px 0 10px;
+    min-width: 5rem;
+    max-height: 5rem;
+    background-color: maroon;
+    color: white;
+    font-size: 20px;
+    border-radius: 50%;
+  }
+  .profile-name {
+    font-size: 35px;
+    margin: 0px 0 5px 0;
+    text-align: left;
+  }
+  .profile-email {
+    font-size: 15px;
+    margin: 5px 0 15px 0;
+  }
+  .profile-role,
+  .button {
+    display: block;
+    font-size: 15px;
+    margin: 15px auto;
+    padding: 5px 10px;
+    background-color: black;
+    color: whitesmoke;
+    width: 15rem;
+  }
+  .button {
+    background-color: rgb(49, 140, 245);
+  }
+}
+
+.bugs-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
+  .single-bug-wrapper {
+    border: 1px solid black;
+    margin: 3rem;
+    max-width: 340px;
+  }
+
+  h2,
+  h6 {
+    border-bottom: 1px solid gray;
+    padding: 1rem;
+    margin: 0;
+    text-transform: capitalize;
+    color: black;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+
+  h5 {
+    font-size: 16inpx;
+    margin: 0;
+    color: black;
+    margin: 10px 0 0px 0;
+  }
+
+  h6 {
+    font-size: 15px;
+  }
+
+  .bug-description {
+    color: rgb(102, 94, 94);
+    font-size: 15px;
+    padding: 2rem 1rem;
+  }
+
+  .button {
+    display: block;
+    color: white;
+    padding: 10px 15px;
+    background-color: black;
+    margin: 1rem auto;
+    width: 150px;
+  }
 }

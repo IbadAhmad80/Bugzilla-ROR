@@ -1,17 +1,11 @@
-
 <% provide(:title, @user.name) %>
-<div class="row">
-    <aside class="col-md-4">
-        <section>
-            <h1>
-                <%= @user.name %>
-            </h1>
-            <p>
-                <%= @user.email %>
-            </p>
-            <h4>
-                <%= @user.role %>
-            </h4>
-        </section>
-    </aside>
+<div class='profile-container'> 
+   <div class='single-profile-item'>
+      <div class='profile-picture'><%= @user.name[0] %></div>
+      <div>
+          <div class='profile-name'><%= @user.name %></div>
+          <div class='profile-email'><%= @user.email %></div>
+          <div class='profile-role'><%= @user.role %></div>
+      </div>
+   </div>
 </div>

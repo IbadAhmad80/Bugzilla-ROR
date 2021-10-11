@@ -19,8 +19,12 @@ class UsersController < ApplicationController
     end
   end
 
-  def show  
+  def show
+      if current_user.id==params[:id].to_i || current_user.role=='Manager'
         @user = User.find(params[:id])
+      else
+        redirect_to bugs_path
+      end
   end
 
   def index

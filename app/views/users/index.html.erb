@@ -1,23 +1,15 @@
 <% provide(:title, 'All Users') %>
-<table class="table">
-  <thead>
-    <tr>
-        <th scope="col">User ID</th>
-        <th scope="col">Name</th>
-        <th scope="col">Role</th>
-        <th scope="col">Update Role</th>
-    </tr>
-  </thead>
-  
-  <tbody>
-   <% @users.each do |user| %>
-        <tr>
-             <td><%= user.id %></th>
-            <td><%= link_to user.name, user %></th>
-            <td ><%= user.role %></td>
-            <td><%= link_to "Edit", edit_user_path(user) %></td>
-        </tr>
-    <% end %>
-    
-  </tbody>
-</table>
+<div class='profile-container'> 
+  <% @users.each do |user|  %>
+   <div class='single-profile-item'>
+      <div class='profile-picture'><%= user.name[0] %></div>
+      <div >
+          <div class='profile-name'><%= link_to user.name.split(" ")[0], user %></div>
+          <div class='profile-email'><%= user.email %></div>
+          <div class='profile-role'><%= user.role %></div>
+          <div><%= link_to "Edit Role", edit_user_path(user), class:'button' %></div>
+          
+      </div>
+   </div>
+  <% end %>
+</div>

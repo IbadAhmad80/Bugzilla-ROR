@@ -1,34 +1,22 @@
 <% provide(:title, @bug.title) %>
 <div>
-  <table class="table">
-    <thead>
-      <tr>
-        <th scope="col">Title</th>
-        <th scope="col" >Description</th>
-        <th scope="col">Priority</th>
-        <th scope="col">Status</th>
-        <th scope="col">Estimated_time</th>
-        <th scope="col">Created By</th>
-        <th scope="col">Assigned To</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><%= @bug.title %></th>
-        <td ><%= @bug.description %></td>
-        <td><%= @bug.priority %></td>
-        <td><%= @bug.status %></td>
-        <td><%= @bug.estimated_time %> Days</td>
-        <td><%= (User.find(@bug.user_id))[:name] %></td>
-        <td><%= (User.find(@bug.qa_id))[:name]%></td>
-        
-      </tr>
-    </tbody>
-  </table>
-  <% if @bug.comments.any? && (@current_user.role!='Manager') %>
-    <% @bug.comments.each do |comment| %>
-          <h4>title : <%= comment.title  %></h4>
-          <h4>content : <%=  comment.content  %></h4>
-    <%end%>
-  <% end %>
+  <div class='bugs-container'>
+    <div class='single-bug-wrapper'>
+        <h2 class='bug-title'><%= @bug.title%></h2>
+        <h6 class='bug-description'><%=  @bug.description %></h6>
+        <h6 class='bug-creator'>Created By : <%=  link_to (User.find(@bug.user_id))[:name] , User.find(@bug.user_id) %>  (<%= User.find(@bug.user_id)[:role]%>)</h6>
+        <h6 class='bug-assigned'>Assigned To (QA) : <%=  link_to (User.find(@bug.qa_id))[:name], User.find(@bug.user_id) %></h6>
+        <h6 class='bug-assigned'>Assigned To (Developer) : <%=  link_to (User.find(@bug.developer_id))[:name], User.find(@bug.user_id) %></h6>
+        <h6 class='bug-estimated-time'>Estimated Time : <%= @bug.estimated_time %> Days</h6>
+        <h6 class='bug-priority'>Priority : <%= @bug.priority %></h6>
+        <h6 class='bug-status'>Status : <%= @bug.status %></h6>
+        <% if @bug.comments.any? && (@current_user.role!='Manager') %>
+          <% @bug.comments.each do |comment| %>
+          <h5>title : <%= comment.title  %></h5>
+          <h6>content : <%=  comment.content  %></h6>
+          <%end%>
+        <% end %>
+    </div>
+</div>
+  
 </div>

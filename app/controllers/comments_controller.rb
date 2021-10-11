@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
   before_action :developer_check
+  before_action :logged_in_user, only: [:new,]
 
     def new  
       @comment=Comment.new
@@ -11,7 +12,7 @@ class CommentsController < ApplicationController
      @comment = bug.comments.build(comment_params)
       if @comment.save
         flash[:success] = "Comment Created."
-        redirect_to bugs_path
+        redirect_to bug
       else
         render 'new'
       end   

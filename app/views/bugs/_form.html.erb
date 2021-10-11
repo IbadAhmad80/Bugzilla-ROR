@@ -15,7 +15,7 @@
                 <%= f.select :status, ['Assigned','Started','In Progress','Completed'],class: 'form-control' %>
                 <%= f.label :developer_id %>
                 <%= f.select :developer_id, @developer.map { |t1| [t1.name, t1.id]}, {}, class: "form-control" %>
-                <%= f.label :qa_id %>
+                <%= f.label :Qa_id %>
                 <%= f.select :qa_id, @QA.map { |t| [t.name, t.id]}, {}, class: "form-control" %>  
         <% else %>
                 <%= f.label :status %>
