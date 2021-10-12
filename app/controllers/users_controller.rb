@@ -65,6 +65,7 @@ class UsersController < ApplicationController
 
     def admin_check
       if current_user.role!='Manager'
+        flash['danger']='You does not have Administrative access'
         redirect_to current_user
       end
     end
